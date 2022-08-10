@@ -1,0 +1,8 @@
+# Browsers that we support
+# https://github.com/browserslist/browserslist#best-practices
+## e.g) npx browserslist
+
+defaults
+not dead
+maintained node versions
+>0.25%

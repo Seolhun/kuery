@@ -1,0 +1,47 @@
+{
+  "license": "MIT",
+  "author": {
+    "name": "Seolhun",
+    "email": "shun10116@gmail.com",
+    "url": "https://github.com/Seolhun"
+  },
+  "name": "@seolhun/something-core",
+  "description": "To build something core modules",
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "files": [
+    "dist/",
+    "package.json",
+    "CHANGELOG.md",
+    "README.md"
+  ],
+  "scripts": {
+    "prettier": "prettier --write './src/**/*.{ts,tsx,js,jsx}'",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx ./src",
+    "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx ./src --fix",
+    "build": "rollup -c",
+    "prebuild": "rm -rf dist",
+    "clear": "rm -rf dist && rm -rf .rpt2_cache",
+    "bundle": "rollup -c",
+    "test": "jest --coverage"
+  },
+  "peerDependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-spring": "^8.0.27"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "is-svg": ">=4.2.2",
+    "node-notifier": ">=8.0.1",
+    "y18n": ">=4.0.1"
+  },
+  "engines": {
+    "node": ">= 6.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

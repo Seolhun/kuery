@@ -1,0 +1,19 @@
+# Default
+dist
+node_modules
+
+# Typescript
+*.d.ts
+
+# Webpack Configuration
+webpack.*.js
+
+# Babel Configuration
+babel.config.js
+
+# Test Code
+*.test.*
+
+# JetBrains
+.next
+.idea

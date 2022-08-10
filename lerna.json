@@ -1,0 +1,21 @@
+{
+  "packages": [
+    "packages/*"
+  ],
+  "command": {
+    "publish": {
+      "allowBranch": [
+        "master",
+        "develop"
+      ],
+      "ignoreChanges": [
+        "docs",
+        "packages/examples",
+        "packages/templates",
+        "**/test",
+        "**/*.md"
+      ]
+    }
+  },
+  "version": "0.0.0"
+}

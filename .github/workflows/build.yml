@@ -1,0 +1,55 @@
+name: Github Build
+
+on:
+  push:
+    branches: [master, develop]
+    paths-ignore:
+      - '**/*.md'
+  pull_request:
+    branches: [master, develop, /^release/.*$/, /^feature/.*$/]
+env:
+  CI: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Git Identity
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/$GITHUB_REPOSITORY
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
+
+      - name: Install
+        run: npm ci
+
+      - name: Bootstrap
+        run: npm run bs
+
+      - name: Linting
+        run: npm run lint
+
+      - name: Test
+        run: npm run test
+
+      - name: Build
+        run: npm run build --if-present
+
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_CHANNEL: dev-travis
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
