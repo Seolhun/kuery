@@ -3,26 +3,6 @@ import Kuery from './Kuery';
 type KueryValueType = any;
 
 describe('Kuery Test', () => {
-  it('comparator', () => {
-    const comparator = (key, prevValue, nextValue) => {
-      if (key === 'foo') {
-        const hit = prevValue !== 4 && prevValue !== nextValue;
-        return hit;
-      }
-      return true;
-    };
-    const initialData = { foo: 3 };
-    const kuery = new Kuery<KueryValueType>({ initialData, comparator });
-    kuery.set('user', { id: 1, name: 'seolhun' });
-    kuery.set('foo', 4);
-    expect(kuery.get('user')).toEqual({ id: 1, name: 'seolhun' });
-    expect(kuery.get('foo')).toEqual(4);
-    kuery.set('user', { id: 1, name: 'seolhun' });
-    kuery.set('foo', 5);
-    expect(kuery.get('user')).toEqual({ id: 1, name: 'seolhun' });
-    expect(kuery.get('foo')).toEqual(4);
-  });
-
   it('clear()', () => {
     const kuery = new Kuery<KueryValueType>();
     kuery.set('user', {
