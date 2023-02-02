@@ -102,7 +102,7 @@
     "jest-canvas-mock": "^2.3.0",
     "jest-config": "^25.3.0",
     "jest-emotion": "^10.0.32",
-    "lerna": "^3.22.1",
+    "lerna": "^6.4.1",
     "node-notifier": ">=8.0.1",
     "postcss-flexboxfixer": "0.0.5",
     "postcss-flexbugs-fixes": "^4.2.1",
