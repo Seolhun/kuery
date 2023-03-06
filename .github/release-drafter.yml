@@ -1,0 +1,48 @@
+name-template: v$NEXT_PATCH_VERSION 🌈
+tag-template: v$NEXT_PATCH_VERSION
+categories:
+  - title: 🎉 Epic
+    labels:
+      - epic
+      - Epic
+  - title: 🚀 Features
+    labels:
+      - feat
+      - feature
+      - Feature
+      - enhancement
+      - Enhancement
+  - title: 🐛 Bug Fixes
+    labels:
+      - fix
+      - Fix
+      - bugfix
+      - bug
+      - Bug
+      - hotfix
+  - title: 🦾 Refactoring
+    labels:
+      - refactor
+      - Refactor
+  - title: 📚 Documentation
+    labels:
+      - docs
+      - Docs
+      - documentation
+      - Documentation
+  - title: 🧰 Maintenance
+    labels:
+      - chore
+      - Chore
+      - ci
+      - CI
+      - build
+      - Build
+  - title: 🛠 Dependencies
+    labels:
+      - dependencies
+      - Dependencies
+change-template: $TITLE @$AUTHOR (#$NUMBER)
+template: |
+  ## Changes
+  $CHANGES
