@@ -3,7 +3,7 @@
 
 # Kuery
 
-To store key value as Kuery
+To parse/stringify query string to improve ui/ux
 
 ## Requirement
 
