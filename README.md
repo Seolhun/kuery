@@ -1,9 +1,9 @@
-![Stage Github workflow](https://github.com/Seolhun/cache/actions/workflows/stage-build-test.yml/badge.svg)
-![Dev Github workflow](https://github.com/Seolhun/cache/actions/workflows/dev-build-test.yml/badge.svg)
+![Stage Github workflow](https://github.com/Seolhun/kuery/actions/workflows/stage-build-test.yml/badge.svg)
+![Dev Github workflow](https://github.com/Seolhun/kuery/actions/workflows/dev-build-test.yml/badge.svg)
 
-# Cache
+# Kuery
 
-To store key value as Cache
+To store key value as Kuery
 
 ## Requirement
 
@@ -12,9 +12,9 @@ Node > 10.0
 ## Install
 
 ```bash
-npm install @seolhun/cache
+npm install @seolhun/kuery
 ```
 
 ```ts
-import Cache from '@seolhun/cache';
+import Kuery from '@seolhun/kuery';
 ```
