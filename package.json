@@ -1,6 +1,6 @@
 {
   "name": "@seolhun/kuery",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "author": "Seolhun",
   "license": "MIT",
   "description": "To parse/stringify query string to improve ui/ux",
