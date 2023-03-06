@@ -41,5 +41,5 @@ jobs:
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
         env:
-          SLACK_CHANNEL: dev-travis
+          SLACK_CHANNEL: github-builds
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
