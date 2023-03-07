@@ -4,12 +4,71 @@ import { Kuery } from './Kuery';
 describe('Kuery', () => {
   describe('parse()', () => {
     it('should correctly parse a simple Kuery string', () => {
-      const input = 'name=john||age=25';
+      const input = 'name=seolhun||age=25';
       const expectedOutput = [
         [
           {
             key: 'name',
-            value: [{ type: 'string', value: 'john' }],
+            value: [{ type: 'string', value: 'seolhun' }],
+          },
+        ],
+        [
+          {
+            key: 'age',
+            value: [{ type: 'number', value: 25 }],
+          },
+        ],
+      ];
+
+      const parsed = Kuery.parse(input);
+      expect(parsed).toEqual(expectedOutput);
+    });
+
+    it('should correctly parse a Kuery string with multiple And for a key', () => {
+      const input = 'name=seolhun&&age=25||age=25';
+      const expectedOutput = [
+        [
+          {
+            key: 'name',
+            value: [
+              {
+                type: 'string',
+                value: 'seolhun',
+              },
+            ],
+          },
+          {
+            key: 'age',
+            value: [
+              {
+                type: 'number',
+                value: 25,
+              },
+            ],
+          },
+        ],
+        [
+          {
+            key: 'age',
+            value: [{ type: 'number', value: 25 }],
+          },
+        ],
+      ];
+
+      const parsed = Kuery.parse(input);
+      expect(parsed).toEqual(expectedOutput);
+    });
+
+    it('should correctly parse a Kuery string with multiple And values for a key', () => {
+      const input = 'name=seol,hun||age=25';
+      const expectedOutput = [
+        [
+          {
+            key: 'name',
+            value: [
+              { type: 'string', value: 'seol' },
+              { type: 'string', value: 'hun' },
+            ],
           },
         ],
         [
@@ -116,7 +175,7 @@ describe('Kuery', () => {
         [
           {
             key: 'name',
-            value: [{ type: 'string', value: 'John' }],
+            value: [{ type: 'string', value: 'SeolHun' }],
           },
           {
             key: 'age',
@@ -130,7 +189,7 @@ describe('Kuery', () => {
           },
         ],
       ];
-      const expected = 'name=John,age=30||isStudent=true';
+      const expected = 'name=SeolHun&&age=30||isStudent=true';
       const result = Kuery.stringify(kuery);
       expect(result).toEqual(expected);
     });
