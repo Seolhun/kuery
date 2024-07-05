@@ -1,46 +1,42 @@
-# see: https://help.github.com/actions/language-and-framework-guides/publishing-nodejs-packages
-name: Publish Package at Github Registry
+name: Continuous Deployment
 
 on:
   push:
-    tags:
-      - 'v*'
+    branches: [main, develop]
+    paths-ignore:
+      - '**/*.md'
+  pull_request:
+    branches: [main, develop, /^release\/.*$/, /^feature\/.*$/, /^bugfix\/.*$/, /^hotfix\/.*$/, /^support\/.*$/]
+    types: [opened, synchronize, reopened]
+    paths-ignore:
+      - '**/*.md'
 
 jobs:
-  build-publish:
+  cd:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [18.x]
+    name: Continuous Deployment
+    env:
+      GITHUB_TOKEN: ${{secrets.GH_TOKEN}}
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
-      - name: Setup node
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node }}
-          registry-url: "https://npm.pkg.github.com"
-          scope: "@seolhun"
+      - name: Setup Node.js & pnpm
+        uses: ./.github/actions/node-pnpm-setup
 
-      - name: Install dependencies
-        run: npm install
-        env:
-          SEOLHUN_GITHUB_TOKEN: ${{secrets.SEOLHUN_GITHUB_TOKEN}}
+      - name: Install Dependencies
+        run: pnpm install --no-frozen-lockfile
 
       - name: Build
-        run: npm run build
-        env:
-          NODE_ENV: production
+        run: pnpm run build
 
-      - name: Publish package
-        run: npm publish
+      - name: Create Release Pull Request
+        uses: changesets/action@v1
+        with:
+          title: "chore: Bum up packages version to publish"
+          commit: "chore: Bump up packages version to publish"
+          version: pnpm changeset:version
+          publish: pnpm changeset:publish
         env:
-          SEOLHUN_GITHUB_TOKEN: ${{secrets.SEOLHUN_GITHUB_TOKEN}}
-
-      - name: Slack Notification
-        uses: rtCamp/action-slack-notify@v2
-        env:
-          SLACK_CHANNEL: github-builds
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          GITHUB_TOKEN: ${{secrets.GH_TOKEN}}

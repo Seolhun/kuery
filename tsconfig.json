@@ -1,61 +1,80 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Default",
   "compilerOptions": {
-    "target": "ES5",
+    "target": "ES6",
     "module": "CommonJS",
-    "lib": ["ES2015"],
-    "moduleResolution": "Node",
-    "types": ["node", "jest"],
+    "lib": [
+      "ESNext",
+      "DOM",
+      "DOM.Iterable"
+    ],
+		"outDir": "./dist",
     "jsx": "react",
-    /* Declaration Options */
-    "declaration": true,
-    /* Compile options */
+    "moduleResolution": "Node",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    /* Web */
-    "allowJs": false,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
+    "experimentalDecorators": true,
+    "allowJs": true,
     "resolveJsonModule": true,
-    // "isolatedModules": true,
-    /* Enable all strict type-checking options. */
     "strict": true,
     "alwaysStrict": true,
-    "allowUnreachableCode": false, // 도달 불가능한 코드에 대한 허용 여부.
-    "allowUnusedLabels": false, // 사용하지 않는 라벨에 대한 허용 여부
-    "noFallthroughCasesInSwitch": true, // 잘못 적혔다고 판단되는 switch문에 대한 에러 발생
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "noFallthroughCasesInSwitch": true,
     "noImplicitAny": false,
-    "noImplicitReturns": true, // 함수의 모든 경로가 값을 반환하지 않으면 에러 발생
+    "noImplicitReturns": true,
     "noImplicitThis": true,
-    "noStrictGenericChecks": true, // 함수에서 generic의 엄격한 검사 해제 여부
-    "noUnusedLocals": true, // 사용안된 지역변수에 대한 오류 보고 여부
-    "noUnusedParameters": true, // 사용안된 파라미터에 대한 오류 보고 여부
+    "noUnusedLocals": true,
+    "noUnusedParameters": false,
     "strictFunctionTypes": true,
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
-    "suppressExcessPropertyErrors": false, // 객체 리터럴에 대한 초과 속성 검사 억제 여부
-    "suppressImplicitAnyIndexErrors": false, // 인덱스 서명이없는 개체를 인덱싱하는 경우 --noImplicitAny 오류 억제여부
-    /* Debugging Options */
-    "traceResolution": false, // 모듈 검색에 대한 로그메세지 출력 여부
-    "listEmittedFiles": false, // 컴파일된 결과 파일들 이름을 터미널에 출력
-    "listFiles": false, // 컴파일된 파일들 이름을 터미널에 출력
-    "pretty": true, // 에러 메시지를 예쁘게 설정
-    "noEmitOnError": false, // noEmit 될 경우 에러
+    "suppressExcessPropertyErrors": false,
+    "suppressImplicitAnyIndexErrors": false,
+    "traceResolution": false,
+    "listEmittedFiles": false,
+    "listFiles": false,
+    "pretty": true,
+    "noEmitOnError": false,
     "sourceMap": false,
-    "outDir": "dist",
+    "composite": false,
+    "declaration": true,
+    "declarationMap": false,
+    "inlineSources": false,
+    "isolatedModules": true,
+    "preserveWatchOutput": true,
     "typeRoots": [
-			"./node_modules/@types",
-			"./@types"
-		]
+      "./node_modules/@types",
+      "./@types",
+    ],
+		"baseUrl": ".",
+    "paths": {
+      "~/*": [
+        "./src/*"
+      ]
+    },
   },
-	"include": [
-		"src",
-	],
-	"exclude": [
-    "**/*.spec.ts",
-    "**/*.spec.tsx",
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.js",
+    "**/*.jsx",
+    "**/*.cjs",
+    "**/*.mjs",
+    "@types"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "test",
     "**/*.test.ts",
     "**/*.test.tsx",
-	]
+    "**/*.spec.ts",
+    "**/*.spec.tsx",
+    "**/*.stories.ts",
+    "**/*.stories.tsx",
+  ]
 }

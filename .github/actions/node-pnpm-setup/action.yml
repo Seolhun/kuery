@@ -1,0 +1,14 @@
+name: Setup Node.js & pnpm
+description: Setup Node.js & pnpm
+runs:
+  using: composite
+  steps:
+    - uses: pnpm/action-setup@v2
+      with:
+        version: 8
+
+    - uses: actions/setup-node@v4
+      with:
+        cache: "pnpm"
+        cache-dependency-path: "pnpm-lock.yaml"
+        node-version-file: ".nvmrc"

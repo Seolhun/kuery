@@ -1,10 +1,6 @@
 name-template: v$NEXT_PATCH_VERSION 🌈
 tag-template: v$NEXT_PATCH_VERSION
 categories:
-  - title: 🎉 Epic
-    labels:
-      - epic
-      - Epic
   - title: 🚀 Features
     labels:
       - feat
@@ -26,8 +22,6 @@ categories:
       - Refactor
   - title: 📚 Documentation
     labels:
-      - docs
-      - Docs
       - documentation
       - Documentation
   - title: 🧰 Maintenance

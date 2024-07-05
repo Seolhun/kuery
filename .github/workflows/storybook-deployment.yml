@@ -1,0 +1,35 @@
+name: Storybook Build & Deployment at Github Page
+
+on:
+  workflow_dispatch:
+    inputs:
+      commit_sha:
+        description: 'commit sha for deployment'
+        type: string
+
+jobs:
+  storybook-ci-cd:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{secrets.GH_TOKEN}}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.sha != '' && github.event.inputs.sha || github.sha }}
+
+      - name: Setup Node.js & pnpm
+        uses: ./.github/actions/node-pnpm-setup
+
+      - name: Install Packages
+        run: pnpm i
+
+      - name: Build Storybook
+        run: pnpm run build:storybook
+
+      - name: Deploy Storybook
+        uses: JamesIves/github-pages-deploy-action@v4.2.5
+        with:
+          branch: storybook
+          folder: ./packages/components/docs
