@@ -1,5 +1,8 @@
+import { describe, it, expect } from 'vitest'
+
 import { ParsedKueryValues } from './Kuery.types';
 import { Kuery } from './Kuery';
+
 
 describe('Kuery', () => {
   describe('parse()', () => {
